@@ -3,40 +3,29 @@
 {% block title %}- Inloggen{% endblock %}
 
 {% block body %}
-<form method="post" class="col-10 col-md-8 col-lg-4 m-auto pt-3">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <div class="container mt-3 bg-dark  text-white rounded-0 rounded-lg-pill p-3 col-12 col-lg-8">
+        <form method="post" class="col-10 col-md-8 col-lg-6 m-auto mt-3 p-5 bg-dark text-white rounded-0 rounded-lg-pill">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+            {% if app.user %}
+                <div class="mb-3">
+                    <h5>You are logged in as {{ app.user.username }}, <a class="text-danger" href="{{ path('app_logout') }}">Logout</a></h5>
+                </div>
+            {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Inloggen</h1>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
-    <label for="inputPassword">Wachtwoord</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
+            <h1 class="h3 mb-3 font-weight-normal">Inloggen</h1>
+            <label for="inputUsername">Username</label>
+            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control rounded-pill" required autofocus>
+            <label for="inputPassword">Wachtwoord</label>
+            <input type="password" name="password" id="inputPassword" class="form-control rounded-pill" required>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button class="btn btn-success mt-3" type="submit">
-        Log in
-    </button>
-</form>
+            <button class="btn btn-success mt-3 w-100" type="submit">
+                <h4 class="m-0 text">Log in</h4>
+            </button>
+        </form>
+    </div>
 {% endblock %}

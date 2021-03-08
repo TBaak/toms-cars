@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}- Auto's{% endblock %}
+
+{% block body %}
+    <div class="container bg-dark pl-5 pr-5 pb-5 rounded-bottom-pill-fixed mb-5 pt-5 col-12 col-lg-8">
+        <h1 class="text-white text-center mb-5">Onze auto's</h1>
+        {% if cars %}
+            {% for car in cars %}
+                <div class="card mb-3 border-0 rounded-pill overflow-hidden">
+                    <div class="row g-0">
+                        <div class="float-left pl-5">
+                            <div class="card-body">
+                                <h4 class="card-title mb-0">{{ car.make }}</h4>
+                                <h6 class="card-text text-info mb-4">{{ car.model }}</h6>
+                                <a href="{{ path('car-info', { 'slug': car.slug }) }}" class="btn btn-primary">
+                                    <h6 class="m-0 text">Meer informatie</h6>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h3 class="text-center text-secondary">Het lijkt er op dat er geen auto's beschikbaar zijn!</h3>
+        {% endif %}
+
+    </div>
+{% endblock %}
