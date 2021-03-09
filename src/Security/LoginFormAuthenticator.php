@@ -96,7 +96,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse("/");
+        return new RedirectResponse("/cars");
     }
 
     protected function getLoginUrl()
